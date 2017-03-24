@@ -168,8 +168,8 @@ function csv2Array() { //csvﾌｧｲﾙﾉ相対ﾊﾟｽor絶対ﾊﾟｽ
 
 //レベル
 function lessonLvPost() {
-
-    var lessonLv = document.lesson.lessonLv.selectedIndex + 1;
-    console.log(csv2Array());
+  console.log("push");
+  var lessonLv = document.lesson.lessonLv.selectedIndex + 1;
+  console.log(csv2Array());
 
 }
