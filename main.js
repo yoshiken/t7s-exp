@@ -150,26 +150,27 @@ function lessonRarePost() {
 
 //csvParse
 function csv2Array() { //csvﾌｧｲﾙﾉ相対ﾊﾟｽor絶対ﾊﾟｽ
-	var csvData = new Array();
-	var data = new XMLHttpRequest();	
-	data.open("GET", "rare_exp.csv", true); //true:非同期,false:同期
-	data.send(null);
+    var csvData = new Array();
+    var data = new XMLHttpRequest();
+    data.open("GET", "rare_exp.csv", true); //true:非同期,false:同期
+    data.send(null);
 
-	var LF = String.fromCharCode(10); //改行ｺｰﾄﾞ
-	var lines = data.responseText.split(LF);
-	for (var i = 0; i < lines.length;++i) {
-		var cells = lines[i].split(",");
-		if( cells.length != 1 ) {
-			csvData.push(cells);
-		}
-	}
-	return csvData;
+    var LF = String.fromCharCode(10); //改行ｺｰﾄﾞ
+    var lines = data.responseText.split(LF);
+    for (var i = 0; i < lines.length; ++i) {
+        var cells = lines[i].split(",");
+        if (cells.length != 1) {
+            csvData.push(cells);
+        }
+    }
+    return csvData;
 }
 
 //レベル
 function lessonLvPost() {
-  console.log("push");
-  var lessonLv = document.lesson.lessonLv.selectedIndex + 1;
-  console.log(csv2Array());
+    console.log("push");
+    var lessonLv = document.lesson.lessonLv.selectedIndex + 1;
+    console.log(lessonLv);
+    console.log(csv2Array());
 
 }
