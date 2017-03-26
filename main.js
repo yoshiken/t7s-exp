@@ -227,6 +227,15 @@ function lessonLvPost() {
     console.log(exp);
     console.log(b10);
 
+    expCount(exp, b10, "B10餌の場合:", "b10", expMax)
+    expCount(exp, bs10, "BS10餌の場合:", "bs10", expMax)
+    expCount(exp, bs14, "BS14餌の場合:", "bs14", expMax)
+    expCount(exp, s10, "S10餌の場合:", "s10", expMax)
+    expCount(exp, s13, "S13餌の場合:", "s13", expMax)
+    expCount(exp, s30, "S30餌の場合:", "s30", expMax)
+    expCount(exp, exp_connie_red, "赤ジャージの場合:", "red", expMax)
+    expCount(exp, exp_connie_green, "緑ジャージ:", "green", expMax)
+    expCount(exp, exp_connie_rainbow, "虹色ジャージの場合:", "rainbow", expMax)
 
 }
 
