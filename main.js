@@ -1,12 +1,12 @@
 //各レアリティのLv MAXに必要な経験値
-var exp_ps_max = 1033360;
-var exp_p_max = 297415;
-var exp_gs_max = 509263;
-var exp_g_max = 161681;
-var exp_ss_max = 198298;
-var exp_s_max = 71733;
-var exp_bs_max = 52681;
-var exp_b_max = 24193;
+var exp_ps_max = 2186965;
+var exp_p_max = 582014;
+var exp_gs_max = 1067776;
+var exp_g_max = 298829;
+var exp_ss_max = 388009;
+var exp_s_max = 185879;
+var exp_bs_max = 136311;
+var exp_b_max = 34880;
 
 //ジャージコニーの経験値
 var exp_connie_red = 5000;
@@ -28,7 +28,6 @@ var bs14 = 4900;
 var s10 = 12500;
 var s13 = 16250;
 var s30 = 37500;
-var s40 = 50000;
 
 
 //経験値計算関数
@@ -88,8 +87,8 @@ function lessonMoney(lessonIdolLv, lessonPartnerNum, lessonPartnerAve) {
 
 }
 
-console.log(experienceCount("s", 14, 1, 0));
-console.log(lessonMoney(6, 5, 14));
+//console.log(experienceCount("s", 14, 1, 0));
+//console.log(lessonMoney(6, 5, 14));
 
 
 //レッスンアイドルレアリティのMAXLV書き出し
@@ -142,35 +141,111 @@ function lessonRarePost() {
             lessonLv.options[i] = new Option(i + 1);
         }
 
-        console.log(i);
-
     }
 
 }
 
-//csvParse
-function csv2Array() { //csvﾌｧｲﾙﾉ相対ﾊﾟｽor絶対ﾊﾟｽ
-    var csvData = new Array();
-    var data = new XMLHttpRequest();
-    data.open("GET", "rare_exp.csv", true); //true:非同期,false:同期
-    data.send(null);
+//csvパース
+function convertCSVtoArray(str) {
+    var result = [];
+    var tmp = str.split("\n");
 
-    var LF = String.fromCharCode(10); //改行ｺｰﾄﾞ
-    var lines = data.responseText.split(LF);
-    for (var i = 0; i < lines.length; ++i) {
-        var cells = lines[i].split(",");
-        if (cells.length != 1) {
-            csvData.push(cells);
-        }
+    for (var i = 0; i < tmp.length; ++i) {
+        result[i] = tmp[i].split(',');
     }
-    return csvData;
+
+    return result;
 }
 
 //レベル
 function lessonLvPost() {
-    console.log("push");
-    var lessonLv = document.lesson.lessonLv.selectedIndex + 1;
-    console.log(lessonLv);
-    console.log(csv2Array());
+
+    //配列判別用変数定義
+    var indexLv = document.lesson.lessonLv.selectedIndex;
+
+    var lessonRare = document.forms.lesson.lessonRare;
+    var ifRare = lessonRare.options[lessonRare.selectedIndex].value;
+
+    var indexRare = 0;
+    var indexExp = 0;
+    var expMax = 0;
+    var exp = 0;
+    var b10count = 0;
+    var bs10count = 0;
+    var bs14count = 0;
+    var s10count = 0;
+    var s13count = 0;
+    var b30count = 0;
+    
+    //レアリティ別判定でcsv列とレアリティごとのレベルMAXに必要な経験値を入れる
+    if (ifRare == "ps") {
+        indexRare = 8;
+        expMax = exp_ps_max;
+    }
+
+    if (ifRare == "p") {
+        indexRare = 7;
+        expMax = exp_p_max;
+    }
+
+    if (ifRare == "gs") {
+        indexRare = 6;
+        expMax = exp_gs_max;
+    }
+
+    if (ifRare == "g") {
+        indexRare = 5;
+        expMax = exp_g_max;
+    }
+
+    if (ifRare == "ss") {
+        indexRare = 4;
+        expMax = exp_ss_max;
+    }
+
+    if (ifRare == "s") {
+        indexRare = 3;
+        expMax = exp_s_max;
+    }
+
+    if (ifRare == "bs") {
+        indexRare = 2;
+        expMax = exp_bs_max;
+    }
+
+    if (ifRare == "b") {
+        indexRare = 1;
+        expMax = exp_b_max;
+    }
+
+    indexExp = convertCSVtoArray(idolLvCsv);
+    
+    //残りExp
+    exp = expMax - indexExp[indexLv][indexRare];
+    
+    console.log(indexExp[indexLv][indexRare]);
+    console.log(exp);
+    console.log(b10);
+    
+    expCount(exp,b10,"b10",expMax)
+    expCount(exp,bs10,"bs10",expMax)
+    expCount(exp,bs14,"bs14",expMax)
+    expCount(exp,s10,"s10",expMax)
+    expCount(exp,s13,"s13",expMax)
+    expCount(exp,s30,"s30",expMax)
+
 
 }
+
+function expCount(exp,esa,esaTag,expMax){
+  count = 0;
+  
+  count = Math.ceil(exp / esa);
+  document.getElementById(esaTag + "Text").textContent = count + "体";
+  Amari = exp - (esa * count);
+  document.getElementById(esaTag + "AmariText").textContent = Amari;
+  
+}
+
+
+
