@@ -4,11 +4,15 @@
 <head>
     <title>ナナシス経験値計算ツール</title>
 </head>
-    <script type="text/javascript" src="main.js"></script>
-<body onLoad="lessonRarePost()">
+
+<script type="text/javascript" src="idolLvCsv.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<body onLoad="lessonRarePost()" onLoad="lessonLvPost()">
     <form name="lesson">
+
         <p>レッスンアイドルレアリティ:
-        <select name="lessonRare" method="post" onChange="lessonRarePost()">
+            <select name="lessonRare" method="post" onChange="lessonRarePost()">
             <option value = "ps">PS</option>
             <option value = "p">P</option>
             <option value = "gs">GS</option>
@@ -18,14 +22,81 @@
             <option value = "bs">BS</option>
             <option value = "b">B</option>
         </select></p>
-        
+
         <p>レッスンアイドルレベル:
-        <select name="lessonLv" onChange="lessonLvPost()">
+            <select name="lessonLv" onChange="lessonLvPost()">
         </select></p>
         
     </form>
 
+    <div id="b10Text"></div>  
+    <font color=#ff0000><div id="b10AmariText" ></div></font>
+    <br>
+    
+    <div id="bs10Text"></div>
+    <font color=#ff0000><div id="bs10AmariText" ></div></font>
+    <br>
+    
+    <div id="bs14Text"></div>
+    <font color=#ff0000><div id="bs14AmariText" ></div></font>
+    <br>
+    
+    <div id="s10Text"></div>
+    <font color=#ff0000><div id="s10AmariText" ></div></font>
+    <br>
+    
+    <div id="s13Text"></div>
+    <font color=#ff0000><div id="s13AmariText" ></div></font>
+    <br>
+    
+    <div id="s30Text"></div>
+    <font color=#ff0000><div id="s30AmariText" ></div></font>
+    <br>
+    
+    <div id="redText"></div>
+    <font color=#ff0000><div id="redAmariText" ></div></font>
+    <br>
+    
+    <div id="greenText"></div>
+    <font color=#ff0000><div id="greenAmariText" ></div></font>
+    <br>
+    
+    <div id="rainbowText"></div>
+    <font color=#ff0000><div id="rainbowAmariText" ></div></font>
+    <br>
+
+    
+    <p>補足:</P>
+    <p>Lv制限は上限MAX</p>
+
+    <p>B Lv10<br>
+    B1 + B1 ＝ B5<br>
+    B1 + B5 ＝ B10<br>
+    <br>
+    </p>
+    <p>BS Lv10<br>
+    B1 × B1 = BS4 (スペシャルレッスン)<br>
+    BS4 + BS4 = BS10<br>
+    <br>
+    </p>
+    <p>BS Lv14<br>
+    BS4 + BS10 = BS14<br>
+    <br>
+    </p>
+    <p>S Lv10<br>
+    S1 + B10 = S10<br>
+    <br>
+    </p>
+    <p>S Lv13<br>
+    S1 + (B10*2) = S13<br>
+    <br>
+    </p>
+    <p>S Lv30<br>
+    S1 + (B10*15) = S13<br>
+    <br>
+    </p>
+
+
 </body>
 
 </html>
-
