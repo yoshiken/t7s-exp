@@ -227,23 +227,25 @@ function lessonLvPost() {
     console.log(exp);
     console.log(b10);
     
-    expCount(exp,b10,"b10",expMax)
-    expCount(exp,bs10,"bs10",expMax)
-    expCount(exp,bs14,"bs14",expMax)
-    expCount(exp,s10,"s10",expMax)
-    expCount(exp,s13,"s13",expMax)
-    expCount(exp,s30,"s30",expMax)
-
+    expCount(exp,b10,"B10餌の場合:","b10",expMax)
+    expCount(exp,bs10,"BS10餌の場合:","bs10",expMax)
+    expCount(exp,bs14,"BS14餌の場合:","bs14",expMax)
+    expCount(exp,s10,"S10餌の場合:","s10",expMax)
+    expCount(exp,s13,"S13餌の場合:","s13",expMax)
+    expCount(exp,s30,"S30餌の場合:","s30",expMax)
+    expCount(exp,exp_connie_red,"赤ジャージの場合:","red",expMax)
+    expCount(exp,exp_connie_green,"緑ジャージ:","green",expMax)
+    expCount(exp,exp_connie_rainbow,"虹色ジャージの場合:","rainbow",expMax)
 
 }
 
-function expCount(exp,esa,esaTag,expMax){
+function expCount(exp,esa,esaTagText,esaTag,expMax){
   count = 0;
   
   count = Math.ceil(exp / esa);
-  document.getElementById(esaTag + "Text").textContent = count + "体";
+  document.getElementById(esaTag + "Text").textContent = esaTagText + count + "体";
   Amari = exp - (esa * count);
-  document.getElementById(esaTag + "AmariText").textContent = Amari;
+  document.getElementById(esaTag + "AmariText").textContent = "オーバーしてしまう経験値:" + Amari;
   
 }
 
