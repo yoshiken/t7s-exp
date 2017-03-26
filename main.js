@@ -55,9 +55,7 @@ function experienceCount(rare, cardLv, consanguinity, theSamePerson) {
         exp = exp_connie_green;
     } else if (rare == "rainbow") {
         exp = exp_connie_rainbow;
-    } else {
-        console.log("レアリティ選択エラーです");
-    }
+    } 
 
     //計算値基本計算式
     exp = exp * cardLv;
@@ -87,10 +85,6 @@ function lessonMoney(lessonIdolLv, lessonPartnerNum, lessonPartnerAve) {
 
 }
 
-//console.log(experienceCount("s", 14, 1, 0));
-//console.log(lessonMoney(6, 5, 14));
-
-
 //レッスンアイドルレアリティのMAXLV書き出し
 var lessonRareEvent = document.getElementById('lessonRare');
 
@@ -105,31 +99,31 @@ function lessonRarePost() {
         rareLvMax(140);
     }
 
-    if (rareIndex == "p") {
+    else if (rareIndex == "p") {
         rareLvMax(80);
     }
 
-    if (rareIndex == "gs") {
+    else if (rareIndex == "gs") {
         rareLvMax(110);
     }
 
-    if (rareIndex == "g") {
+    else if (rareIndex == "g") {
         rareLvMax(65);
     }
 
-    if (rareIndex == "ss") {
+    else if (rareIndex == "ss") {
         rareLvMax(80);
     }
 
-    if (rareIndex == "s") {
+    else if (rareIndex == "s") {
         rareLvMax(60);
     }
 
-    if (rareIndex == "bs") {
+    else if (rareIndex == "bs") {
         rareLvMax(60);
     }
 
-    if (rareIndex == "b") {
+    else if (rareIndex == "b") {
         rareLvMax(35);
     }
 
@@ -170,12 +164,6 @@ function lessonLvPost() {
     var indexExp = 0;
     var expMax = 0;
     var exp = 0;
-    var b10count = 0;
-    var bs10count = 0;
-    var bs14count = 0;
-    var s10count = 0;
-    var s13count = 0;
-    var b30count = 0;
 
     //レアリティ別判定でcsv列とレアリティごとのレベルMAXに必要な経験値を入れる
     if (ifRare == "ps") {
@@ -183,37 +171,37 @@ function lessonLvPost() {
         expMax = exp_ps_max;
     }
 
-    if (ifRare == "p") {
+    else if (ifRare == "p") {
         indexRare = 7;
         expMax = exp_p_max;
     }
 
-    if (ifRare == "gs") {
+    else if (ifRare == "gs") {
         indexRare = 6;
         expMax = exp_gs_max;
     }
 
-    if (ifRare == "g") {
+    else if (ifRare == "g") {
         indexRare = 5;
         expMax = exp_g_max;
     }
 
-    if (ifRare == "ss") {
+    else if (ifRare == "ss") {
         indexRare = 4;
         expMax = exp_ss_max;
     }
 
-    if (ifRare == "s") {
+    else if (ifRare == "s") {
         indexRare = 3;
         expMax = exp_s_max;
     }
 
-    if (ifRare == "bs") {
+    else if (ifRare == "bs") {
         indexRare = 2;
         expMax = exp_bs_max;
     }
 
-    if (ifRare == "b") {
+    else if (ifRare == "b") {
         indexRare = 1;
         expMax = exp_b_max;
     }
@@ -222,10 +210,6 @@ function lessonLvPost() {
 
     //残りExp
     exp = expMax - indexExp[indexLv][indexRare];
-
-    console.log(indexExp[indexLv][indexRare]);
-    console.log(exp);
-    console.log(b10);
 
     expCount(exp, b10, "B10餌の場合:", "b10", expMax)
     expCount(exp, bs10, "BS10餌の場合:", "bs10", expMax)
@@ -236,15 +220,13 @@ function lessonLvPost() {
     expCount(exp, exp_connie_red, "赤ジャージの場合:", "red", expMax)
     expCount(exp, exp_connie_green, "緑ジャージ:", "green", expMax)
     expCount(exp, exp_connie_rainbow, "虹色ジャージの場合:", "rainbow", expMax)
-
+    
+    function expCount(exp, esa, esaTagText, esaTag, expMax) {
+        count = Math.ceil(exp / esa);
+        document.getElementById(esaTag + "Text").textContent = esaTagText + count + "体";
+        Amari = Math.abs(exp - (esa * count));
+        document.getElementById(esaTag + "AmariText").textContent = "オーバーしてしまう経験値:" + Amari;
+    
+    }
 }
 
-function expCount(exp, esa, esaTagText, esaTag, expMax) {
-    count = 0;
-
-    count = Math.ceil(exp / esa);
-    document.getElementById(esaTag + "Text").textContent = esaTagText + count + "体";
-    Amari = Math.abs(exp - (esa * count));
-    document.getElementById(esaTag + "AmariText").textContent = "オーバーしてしまう経験値:" + Amari;
-
-}
